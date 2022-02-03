@@ -1,9 +1,9 @@
 public class main {
 
-    public void main(){
+    public static void main(String[] args) {
         String elements[] = {"Nom", "Prenom"};
         Elements voulus = new Elements(elements);
 
-        voulus.toString();
+        System.out.println(voulus.toString());
     }
 }

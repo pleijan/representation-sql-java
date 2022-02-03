@@ -11,7 +11,7 @@ public class Elements {
         for (int i = 0; i<elements.length; i++){
             retour += elements[i] + ", ";
         }
-        retour += elements[elements.length];
+
         return retour;
     }
 }
