@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 
 public class Table {
@@ -9,14 +11,14 @@ public class Table {
      * constructor of the table class with no element
      * @param nameTable name of the table
      */
-    public void Table(String nameTable){
+    public Table(String nameTable){
         name = nameTable;
         elements = new ArrayList<String>();
     }
 
 
     /**
-     * function who add one element to the list "Elements"
+     * function who add one element to the list "main.Elements"
      * @param newElement
      */
     public void addElement(String newElement){
@@ -24,7 +26,7 @@ public class Table {
     }
 
     /**
-     * function who add a list of elements to the list "Elements"
+     * function who add a list of elements to the list "main.Elements"
      * @param newElements
      */
     public void addElement(String[] newElements){
@@ -34,7 +36,7 @@ public class Table {
     }
 
     /**
-     * function who remove one element from the list "Elements"
+     * function who remove one element from the list "main.Elements"
      * @param toRemove
      */
     public void removeElement(String toRemove){
