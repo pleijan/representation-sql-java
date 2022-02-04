@@ -18,7 +18,7 @@ public class Table {
 
 
     /**
-     * function who add one element to the list "main.Elements"
+     * function who add one element to the list "Elements"
      * @param newElement
      */
     public void addElement(String newElement){
@@ -26,7 +26,7 @@ public class Table {
     }
 
     /**
-     * function who add a list of elements to the list "main.Elements"
+     * function who add a list of elements to the list "Elements"
      * @param newElements
      */
     public void addElement(String[] newElements){
@@ -36,7 +36,7 @@ public class Table {
     }
 
     /**
-     * function who remove one element from the list "main.Elements"
+     * function who remove one element from the list "Elements"
      * @param toRemove
      */
     public void removeElement(String toRemove){

@@ -19,7 +19,7 @@ public class Drop implements Query {
     @Override
     public String queryString(){
         if (tableName == "") {
-            System.err.println("The main.Table name is missing.");
+            System.err.println("The Table name is missing.");
             return "";
         } else {
             return "DROP TABLE " + tableName;
