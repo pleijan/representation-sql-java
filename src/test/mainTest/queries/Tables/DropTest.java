@@ -1,8 +1,9 @@
-package main.queries.Tables;
+package mainTest.queries.Tables;
 
 
-import main.LifecycleLoggerTest;
+import mainTest.LifecycleLoggerTest;
 import main.Table;
+import main.queries.Tables.Drop;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
