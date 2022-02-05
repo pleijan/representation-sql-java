@@ -6,12 +6,9 @@ import main.queries.Tables.Update;
 import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class UpdateTest {
+class UpdateTest implements LifecycleLoggerTest{
 
     @Test
     @DisplayName("from()")
