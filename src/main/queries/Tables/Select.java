@@ -11,7 +11,7 @@ public class Select extends Query {
     /**
      * Default Constructor of Select
      */
-    Select() {
+    public Select() {
         super();
         this.tables = new ArrayList<String>();
     }
@@ -24,7 +24,10 @@ public class Select extends Query {
         this.attributes.add(_attribute);
     }
 
-
+    @Override
+    public String getTableName() {
+        return this.tables.toString();
+    }
 
     @Override
     public void from(String _tableName) {

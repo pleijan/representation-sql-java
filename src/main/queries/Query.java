@@ -12,6 +12,11 @@ public abstract class Query {
         this.tableName = "";
         this.attributes = new ArrayList<String>();
     }
+
+    public ArrayList<String> getAttributes() {
+        return attributes;
+    }
+
     /**
      * Add the table used in this query
      * Setter of tableName

@@ -1,9 +1,9 @@
 package mainTest.queries.Tables;
 
 
-import mainTest.LifecycleLoggerTest;
 import main.Table;
 import main.queries.Tables.Drop;
+import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,10 +29,10 @@ class DropTest implements LifecycleLoggerTest {
     }
 
     @Test
-    @DisplayName("queryString()- The final step of the Class")
+    @DisplayName("printQuery()- The final step of the Class")
     void printQuery() {
         String tableName = "TestTable";
-        String stringQuery = "DROP TABLE "+ tableName;
+        String stringQuery = "DROP TABLE "+ tableName +";";
         // Creation of the table
         Table testTable = new Table(tableName);
 
