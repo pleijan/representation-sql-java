@@ -1,38 +1,15 @@
 package main.queries.Tables;
 
+
+import main.LifecycleLoggerTest;
 import main.Table;
 import org.junit.jupiter.api.*;
-
-import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-class DropTest {
-    private static final String name = "DropTest TABLE Class \n";
-    static final Logger logger = Logger.getLogger(DropTest.class.getName());
+class DropTest implements LifecycleLoggerTest {
 
-    @BeforeAll
-    static void setUp() {
-        logger.info("@BeforeAll - Testing "+name);
-    }
-
-    @AfterAll
-    static void done() {
-        logger.info("@AfterAll - End Testing "+name);
-    }
-
-    @BeforeEach
-    void beforeEachTest(TestInfo testInfo) {
-        logger.info(() -> String.format("About to execute [%s]",
-                testInfo.getDisplayName())+ "\n");
-    }
-
-    @AfterEach
-    void afterEachTest(TestInfo testInfo) {
-        logger.info(() -> String.format("Finished executing [%s]",
-                testInfo.getDisplayName())+ "\n");
-    }
 
     @Test
     @DisplayName("from()- The table used in the query")
