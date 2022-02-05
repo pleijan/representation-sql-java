@@ -36,7 +36,31 @@ public class Select extends Query {
 
     @Override
     public String printQuery() {
-        return "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables);
+        return "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables)+";";
+    }
+
+    /**
+     * Getter of Tables
+     * @return the list of Table
+     */
+    public ArrayList<String> getTables() {
+        return tables;
+    }
+
+    /**
+     * Create a distinct attribute for the query
+     * @param _attribute the attribute to distinct
+     */
+    public void selectDistinct(String _attribute) {
+        this.attributes.add("DISTINCT("+_attribute+")");
+    }
+
+    /**
+     * Create a unique attribute for the query
+     * @param _attribute the attribute to make unique
+     */
+    public void selectUnique(String _attribute){
+        this.attributes.add("UNIQUE("+_attribute+")");
     }
 }
 
