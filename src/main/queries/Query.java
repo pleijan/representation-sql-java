@@ -53,7 +53,7 @@ public abstract class Query {
         // Save each string except the last one in this form: (as example)
         // attribute, attribute, attribute,
         // table, table, table
-        for(int i = 0; i<_list.size()-2; i++) {
+        for(int i = 0; i<_list.size()-1; i++) {
             res += _list.get(i) +", ";
         }
 
