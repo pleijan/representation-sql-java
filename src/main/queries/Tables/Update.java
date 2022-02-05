@@ -5,6 +5,8 @@ import main.queries.Query;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.Conversions.replace;
+
 public class Update extends Query {
 
     private ArrayList<String> newValue;
@@ -45,6 +47,9 @@ public class Update extends Query {
             list.add(colIter.next()+" = "+valIter.next()+",");
         }
 
+        String replace = list.get(list.size()-1).replace(",","");
+        list.remove(list.size()-1);
+        list.add(replace);
 
         return list;
     }
