@@ -43,7 +43,7 @@ public class Insert extends Query {
         if (listCol.size() == 0) {
             return "INSERT INTO " + getTableName() + " VALUES (" + listAsString(listAttribute) + ");";
         } else
-            return "INSERT INTO " + getTableName() + "( + " + listAsString(listCol) + ") VALUES (" + listAsString(listAttribute) + ");";
+            return "INSERT INTO " + getTableName() + " (" + listAsString(listCol) + ") VALUES (" + listAsString(listAttribute) + ");";
     }
 
     public ArrayList<String> getListAttribute() {
