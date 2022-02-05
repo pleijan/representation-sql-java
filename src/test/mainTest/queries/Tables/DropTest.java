@@ -30,7 +30,7 @@ class DropTest implements LifecycleLoggerTest {
 
     @Test
     @DisplayName("queryString()- The final step of the Class")
-    void queryString() {
+    void printQuery() {
         String tableName = "TestTable";
         String stringQuery = "DROP TABLE "+ tableName;
         // Creation of the table
@@ -40,7 +40,7 @@ class DropTest implements LifecycleLoggerTest {
         Drop instance = new Drop();
         instance.from(tableName); // Add the tableName to the query
 
-        assertEquals(stringQuery,instance.queryString());
+        assertEquals(stringQuery,instance.printQuery());
 
     }
 }

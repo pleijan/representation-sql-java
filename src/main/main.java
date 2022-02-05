@@ -15,7 +15,7 @@ public class main {
         Drop instance = new Drop();
         instance.from("tableName");
 
-        System.out.println(instance.queryString());
+        System.out.println(instance.printQuery());
 
         // ------------------------------------------------------------------
     }

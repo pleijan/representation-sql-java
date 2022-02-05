@@ -14,12 +14,11 @@ class SelectTest implements LifecycleLoggerTest {
 
     @Test
     @DisplayName("from()-")
-
     void from() {
     }
 
     @Test
     @DisplayName("queryString()-")
-    void queryString() {
+    void printQuery() {
     }
 }

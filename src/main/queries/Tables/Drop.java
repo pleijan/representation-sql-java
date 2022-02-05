@@ -15,12 +15,12 @@ public class Drop extends Query {
     public void from(String _table) { tableName = _table; }
 
     @Override
-    public String queryString(){
+    public String printQuery(){
         if (tableName == "") {
             System.err.println("The Table name is missing.");
             return "";
         } else {
-            return "DROP TABLE " + tableName;
+            return "DROP TABLE " + tableName +";";
         }
 
     }
