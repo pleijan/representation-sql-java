@@ -2,9 +2,7 @@ package main.queries.Tables;
 
 import main.queries.Query;
 
-public class Drop implements Query {
-
-    String tableName;
+public class Drop extends Query {
 
     /**
      * Default constructor of Drop

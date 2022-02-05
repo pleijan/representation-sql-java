@@ -46,8 +46,8 @@ class DropTest {
         instance.from(tableName); // Add the tableName to the query
 
 
-        assertEquals(testTable.getName(),instance.tableName);
-        assertNotEquals("",instance.tableName);
+        assertEquals(testTable.getName(),instance.getTableName());
+        assertNotEquals("",instance.getTableName());
     }
 
     @Test
