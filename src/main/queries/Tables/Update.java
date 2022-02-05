@@ -1,10 +1,8 @@
 package main.queries.Tables;
 
 import main.queries.Query;
-
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import static org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.Conversions.replace;
 
 public class Update extends Query {

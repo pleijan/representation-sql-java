@@ -2,11 +2,12 @@ package mainTest.queries.Tables;
 
 import main.Table;
 import main.queries.Tables.*;
+import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SelectTest {
+class SelectTest implements LifecycleLoggerTest {
 
     @Test
     @DisplayName("select()- Add an attribute to the Query")
