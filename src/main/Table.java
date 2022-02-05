@@ -19,7 +19,7 @@ public class Table {
 
     /**
      * function who add one element to the list "Elements"
-     * @param newElement
+     * @param newElement name of the new Element
      */
     public void addElement(String newElement){
         elements.add(newElement);
@@ -27,7 +27,7 @@ public class Table {
 
     /**
      * function who add a list of elements to the list "Elements"
-     * @param newElements
+     * @param newElements list of New Elements
      */
     public void addElement(String[] newElements){
         for(int i=0; i<newElements.length; i++){
@@ -37,12 +37,12 @@ public class Table {
 
     /**
      * function who remove one element from the list "Elements"
-     * @param toRemove
+     * @param toRemove the Element to remove
      */
     public void removeElement(String toRemove){
         if (!elements.remove(toRemove)) {
             System.err.println(
-                    "Tentative de retrait un objet non contenu dans la liste");
+                    "Tentative de retrait un objet non contenu dans la liste.");
         }
     }
 
@@ -54,4 +54,26 @@ public class Table {
         return name;
     }
 
+    /**
+     * Getter of Elements
+     * @return the list of Elements
+     */
+    public ArrayList<String> getElements() {
+        return elements;
+    }
+
+    /**
+     * Method to get the element with the name of the table
+     * @param _toGet the element
+     * @return "tableName.element" if the element is in the list, or "" and an error;
+     */
+    public String get(String _toGet) {
+        String res = "";
+        if(this.elements.contains(_toGet)){
+            res = this.name + "." + _toGet;
+        } else {
+            System.err.println("Cet attribut ne fait pas partie de cette table.");
+        }
+        return res;
+    }
 }
