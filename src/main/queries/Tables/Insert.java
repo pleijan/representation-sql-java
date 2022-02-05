@@ -45,4 +45,12 @@ public class Insert extends Query {
         } else
             return "INSERT INTO " + getTableName() + "( + " + listAsString(listCol) + ") VALUES (" + listAsString(listAttribute) + ");";
     }
+
+    public ArrayList<String> getListAttribute() {
+        return listAttribute;
+    }
+
+    public ArrayList<String> getListCol() {
+        return listCol;
+    }
 }

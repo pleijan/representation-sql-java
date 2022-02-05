@@ -53,4 +53,8 @@ public class Update extends Query {
     public String printQuery() {
         return "UPDATE "+getTableName()+ " SET " + listAsString(colEqualsVal())+ ";"  ;
     }
+
+    public ArrayList<String> getNewValue() {
+        return newValue;
+    }
 }

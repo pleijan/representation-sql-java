@@ -6,7 +6,8 @@ import main.queries.Tables.Update;
 import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class UpdateTest implements LifecycleLoggerTest{
 
@@ -21,6 +22,8 @@ class UpdateTest implements LifecycleLoggerTest{
         Drop instance = new Drop();
         instance.from(tableName); // Add the tableName to the query
 
+        assertEquals(testTable.getName(),instance.getTableName());
+        assertNotEquals("",instance.getTableName());
     }
 
     @Test
@@ -37,7 +40,8 @@ class UpdateTest implements LifecycleLoggerTest{
 
         instance.update("col1","val1"); //Add couple of arguments to update
 
-
+        assertEquals(instance.getNewValue().size(),1);
+        assertEquals(instance.getAttributes().size(),1);
     }
 
 
@@ -45,6 +49,7 @@ class UpdateTest implements LifecycleLoggerTest{
     @DisplayName("queryString()-")
     void printQuery() {
         String tableName = "TestTable";
+        String stringQuery = "UPDATE "+tableName+" SET col1 = val1;";
         // Creation of the table
         Table testTable = new Table(tableName);
 
@@ -55,6 +60,6 @@ class UpdateTest implements LifecycleLoggerTest{
 
         instance.update("col1","val1"); //Add couple of arguments to update
 
-        System.out.println(instance.printQuery());
+        assertEquals(stringQuery,instance.printQuery());
     }
 }
