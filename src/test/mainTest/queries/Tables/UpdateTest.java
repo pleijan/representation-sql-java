@@ -36,6 +36,8 @@ class UpdateTest implements LifecycleLoggerTest{
 
 
         instance.update("col1","val1"); //Add couple of arguments to update
+
+
     }
 
 

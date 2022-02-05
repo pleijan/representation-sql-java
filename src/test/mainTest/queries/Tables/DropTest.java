@@ -41,6 +41,5 @@ class DropTest implements LifecycleLoggerTest {
         instance.from(tableName); // Add the tableName to the query
 
         assertEquals(stringQuery,instance.printQuery());
-
     }
 }

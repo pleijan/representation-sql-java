@@ -42,7 +42,7 @@ public class Update extends Query {
         Iterator<String> valIter = newValue.iterator();
 
         while(colIter.hasNext()){
-            list.add(colIter.next()+" = "+valIter.next()+", ");
+            list.add(colIter.next()+" = "+valIter.next()+",");
         }
 
 
