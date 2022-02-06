@@ -1,7 +1,10 @@
 package main;
 
 import main.queries.Tables.Drop;
+import main.queries.Tables.Insert;
 import main.queries.Tables.Update;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class main {
 
@@ -36,5 +39,36 @@ public class main {
         System.out.println(instanceUpdate.printQuery());
 
         // -------------------------------------------------------------------
+
+        // ----------------- Test de la fonction Insert ----------------------
+        String tableNameInsert = "TestTable";
+        // Creation of the table
+        Table testTableInsert = new Table(tableNameInsert);
+
+        // Creation of the query
+        Insert instanceInsert = new Insert();
+        instanceInsert.from(tableNameInsert); // Add the tableName to the query
+
+        instanceInsert.insert("col1","val1");
+        instanceInsert.insert("col2","val2");
+        instanceInsert.insert("col3","val3");
+
+        System.out.println(instanceInsert.printQuery());
+
+        // -------------------------------------------
+
+
+        // Creation of the table
+        Table testTable1 = new Table(tableName);
+
+        // Creation of the query
+        Insert instanceInsert2 = new Insert();
+        instanceInsert2.from(tableNameInsert); // Add the tableName to the query
+
+        instanceInsert2.insert("val1");
+        instanceInsert2.insert("val2");
+        instanceInsert2.insert("val3");
+
+        System.out.println(instanceInsert2.printQuery());
     }
 }
