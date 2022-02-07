@@ -22,10 +22,18 @@ public class DataBase {
         listTables.add(table);
     }
 
+    /**
+     * getter of name
+     * @return name of the database
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * getter of listTables
+     * @return an arrayList of tables
+     */
     public ArrayList<Table> getListTables() {
         return listTables;
     }
