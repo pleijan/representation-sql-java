@@ -6,11 +6,14 @@ public abstract class Query {
 
     protected String tableName;
     protected ArrayList<String> attributes;
+    protected ArrayList<String> wheres;
 
 
     public Query() {
         this.tableName = "";
         this.attributes = new ArrayList<String>();
+        this.wheres = new ArrayList<String>();
+
     }
 
     public ArrayList<String> getAttributes() {
@@ -28,7 +31,7 @@ public abstract class Query {
 
     /**
      * Getter of tableName
-     * @return
+     * @return the name of the table used for the query
      */
     public String getTableName() {
         return tableName;
@@ -62,4 +65,25 @@ public abstract class Query {
 
         return res;
     }
+
+
+    // FOR Select and Update
+    /**
+     * Getter of wheres
+     * @return the list of where condition
+     */
+    public ArrayList<String> getWheres() {
+        return wheres;
+    }
+
+    /**
+     * Create a WHERE Condition for the query
+     * @param _attribute the attribute to use in the condition
+     * @param _operator the operator from SQL Class
+     * @param _value the value to verify can be another SQL
+     */
+    public void where(String _attribute, String _operator, String _value) {
+        this.wheres.add("WHERE "+_attribute + _operator + _value);
+    }
+
 }

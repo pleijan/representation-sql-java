@@ -31,6 +31,61 @@ class SelectTest implements LifecycleLoggerTest {
 
     }
 
+
+    @Test
+    @DisplayName("selectDistinct()- Create a Distinct attribute")
+    void selectDistinct() {
+        String att = "att1";
+        Select instance = new Select();
+        instance.selectDistinct(att);
+
+        String expected = "DISTINCT("+att+")";
+
+        assertEquals(expected, instance.getAttributes().get(0));
+        assertEquals(1,instance.getAttributes().size());
+
+    }
+
+    @Test
+    @DisplayName("selectUnique()- Create a Distinct attribute")
+    void selectUnique() {
+        String att = "att1";
+        Select instance = new Select();
+        instance.selectUnique(att);
+
+        String expected = "UNIQUE("+att+")";
+
+        assertEquals(expected, instance.getAttributes().get(0));
+        assertEquals(1,instance.getAttributes().size());
+
+    }
+
+    @Test
+    @DisplayName("where()- Adding condition")
+    void where() {
+        String tableName = "TestTable";
+        String att = "att1";
+        String operator = " = ";
+        String value = "NEWVALUE";
+        Table table = new Table(tableName);
+        table.addElement(att);
+
+        Select instance = new Select();
+        instance.from(tableName); // Add the tableName to the query
+
+        instance.where(table.get(att),operator,value);
+
+        String expected = "WHERE "+table.get(att)+operator+value;
+
+        assertEquals(expected, instance.getWheres().get(0));
+        assertEquals(1,instance.getWheres().size());
+
+
+
+
+
+
+    }
     @Test
     @DisplayName("from()- Adding one or several Tables")
     void from() {
@@ -74,40 +129,34 @@ class SelectTest implements LifecycleLoggerTest {
 
         instance.from(tableName); // Add the tableName to the query
 
+
         // Select the attributes
         instance.select(table.get(att1));
-        instance.select(table.get(att2));
-        instance.select(table.get(att3));
+        instance.selectUnique(table.get(att2));
+        instance.selectDistinct(table.get(att3));
 
-        //Test
-        String expected = "SELECT "+tableName+"."+att1+", "+tableName+"."+att2+", "+tableName+"."+att3+" FROM "+tableName+";";
-        assertEquals(expected,instance.printQuery());
+        //Test attributes
+        String expected = "SELECT "+tableName+"."+att1+", UNIQUE("+tableName+"."+att2+"), DISTINCT("+tableName+"."+att3+") FROM "+tableName;
+        assertEquals(expected+";",instance.printQuery());
 
+        // Create a condition
+        String operator = " >= ";
+        String value = "NEWVALUE";
+        instance.where(table.get(att1),operator,value);
+
+        // Test one condition
+        expected+= " WHERE "+table.get(att1)+operator+value;
+        assertEquals(expected+";",instance.printQuery());
+
+        // Create a second condition
+        operator = " = ";
+        value = "NEWVALUE2";
+        instance.where(table.get(att2),operator,value);
+
+        // Test 2 conditions
+        expected += " AND WHERE "+table.get(att2)+operator+value;
+        assertEquals(expected+";",instance.printQuery());
     }
 
-    @Test
-    @DisplayName("selectDistinct()- Create a Distinct attribute")
-    void selectDistinct() {
-        String att = "att1";
-        Select instance = new Select();
-        instance.selectDistinct(att);
 
-        String expected = "DISTINCT("+att+")";
-
-        assertEquals(expected, instance.getAttributes().get(0));
-
-    }
-
-    @Test
-    @DisplayName("selectUnique()- Create a Distinct attribute")
-    void selectUnique() {
-        String att = "att1";
-        Select instance = new Select();
-        instance.selectUnique(att);
-
-        String expected = "UNIQUE("+att+")";
-
-        assertEquals(expected, instance.getAttributes().get(0));
-
-    }
 }

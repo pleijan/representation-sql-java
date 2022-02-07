@@ -2,6 +2,8 @@ package main.queries.Tables;
 
 import main.queries.Query;
 
+import java.util.ArrayList;
+
 public class Create extends Query {
 
     private boolean state;
@@ -23,11 +25,30 @@ public class Create extends Query {
         else return("CREATE TABLE "+name+";");
     }
 
+    /**
+     * Getter of State
+     * @return a boolean true for DATABASE, false for TABLE
+     */
     public boolean getState(){
         return state;
     }
 
+    /**
+     * Getter of Name
+     * @return the name of the created object
+     */
     public String getName() {
         return name;
+    }
+
+
+    @Override
+    public void where(String _attribute, String _operator, String _value) {
+        throw new UnsupportedOperationException("Method not implemented");
+    }
+
+    @Override
+    public ArrayList<String> getWheres() {
+        throw new UnsupportedOperationException("Method not implemented");
     }
 }

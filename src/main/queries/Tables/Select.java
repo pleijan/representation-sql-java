@@ -36,7 +36,15 @@ public class Select extends Query {
 
     @Override
     public String printQuery() {
-        return "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables)+";";
+        String query = "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables);
+
+        // Add WHERE Conditions
+        if(this.wheres.size() > 0){
+            query += " "+listAsString(this.wheres).replace(", "," AND ");
+        }
+
+        return query+";";
+
     }
 
     /**
@@ -62,5 +70,8 @@ public class Select extends Query {
     public void selectUnique(String _attribute){
         this.attributes.add("UNIQUE("+_attribute+")");
     }
+
+
+
 }
 

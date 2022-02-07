@@ -53,4 +53,15 @@ public class Insert extends Query {
     public ArrayList<String> getListCol() {
         return listCol;
     }
+
+
+    @Override
+    public void where(String _attribute, String _operator, String _value) {
+        throw new UnsupportedOperationException("Method not implemented");
+    }
+
+    @Override
+    public ArrayList<String> getWheres() {
+        throw new UnsupportedOperationException("Method not implemented");
+    }
 }
