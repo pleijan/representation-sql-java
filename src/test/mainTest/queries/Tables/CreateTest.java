@@ -13,7 +13,7 @@ class CreateTest implements LifecycleLoggerTest {
     void CreateTable(){
         Create instance = new Create(false,"TableName");
 
-        assertEquals(instance.getState(),false);
+        assertFalse(instance.getState());
         assertEquals(instance.getName(),"TableName");
     }
 
@@ -21,7 +21,7 @@ class CreateTest implements LifecycleLoggerTest {
     void CreateDatabase(){
         Create instance = new Create(true,"DBName");
 
-        assertEquals(instance.getState(),true);
+        assertTrue(instance.getState());
         assertEquals(instance.getName(),"DBName");
     }
 
