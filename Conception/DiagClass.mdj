@@ -1280,7 +1280,7 @@
 											"font": "Arial;13;1",
 											"left": 381,
 											"top": 199,
-											"width": 159.33251953125,
+											"width": 199.7861328125,
 											"height": 13,
 											"text": "Database"
 										},
@@ -1315,7 +1315,7 @@
 									"font": "Arial;13;0",
 									"left": 376,
 									"top": 192,
-									"width": 169.33251953125,
+									"width": 209.7861328125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF+wPnJr7J5NnY="
@@ -1352,7 +1352,7 @@
 											"font": "Arial;13;0",
 											"left": 381,
 											"top": 222,
-											"width": 159.33251953125,
+											"width": 199.7861328125,
 											"height": 13,
 											"text": "+listTable: ArrayList<Table>",
 											"horizontalAlignment": 0
@@ -1369,7 +1369,7 @@
 											"font": "Arial;13;0",
 											"left": 381,
 											"top": 237,
-											"width": 159.33251953125,
+											"width": 199.7861328125,
 											"height": 13,
 											"text": "+name: String",
 											"horizontalAlignment": 0
@@ -1378,7 +1378,7 @@
 									"font": "Arial;13;0",
 									"left": 376,
 									"top": 217,
-									"width": 169.33251953125,
+									"width": 209.7861328125,
 									"height": 38
 								},
 								{
@@ -1403,17 +1403,51 @@
 											"font": "Arial;13;0",
 											"left": 381,
 											"top": 260,
-											"width": 159.33251953125,
+											"width": 199.7861328125,
 											"height": 13,
 											"text": "+addTable()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAF+1H+Li0ehmW0=",
+											"_parent": {
+												"$ref": "AAAAAAF+wPnJr7J+27c="
+											},
+											"model": {
+												"$ref": "AAAAAAF+1H+LaUee1Js="
+											},
+											"font": "Arial;13;0",
+											"left": 381,
+											"top": 275,
+											"width": 199.7861328125,
+											"height": 13,
+											"text": "+getName(): String",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAF+1H+6MUeqHu8=",
+											"_parent": {
+												"$ref": "AAAAAAF+wPnJr7J+27c="
+											},
+											"model": {
+												"$ref": "AAAAAAF+1H+6K0enhWU="
+											},
+											"font": "Arial;13;0",
+											"left": 381,
+											"top": 290,
+											"width": 199.7861328125,
+											"height": 13,
+											"text": "+getListTables(): ArrayList<String>",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 376,
 									"top": 255,
-									"width": 169.33251953125,
-									"height": 23
+									"width": 209.7861328125,
+									"height": 53
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1452,8 +1486,8 @@
 							"containerChangeable": true,
 							"left": 376,
 							"top": 192,
-							"width": 169.33251953125,
-							"height": 86,
+							"width": 209.7861328125,
+							"height": 116,
 							"nameCompartment": {
 								"$ref": "AAAAAAF+wPnJr7J4X8U="
 							},
@@ -2425,6 +2459,44 @@
 								"$ref": "AAAAAAF+wPnJr7J17Q4="
 							},
 							"name": "addTable"
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAF+1H+LaUee1Js=",
+							"_parent": {
+								"$ref": "AAAAAAF+wPnJr7J17Q4="
+							},
+							"name": "getName",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAF+1H+5wkeliJQ=",
+									"_parent": {
+										"$ref": "AAAAAAF+1H+LaUee1Js="
+									},
+									"type": "String",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAF+1H+6K0enhWU=",
+							"_parent": {
+								"$ref": "AAAAAAF+wPnJr7J17Q4="
+							},
+							"name": "getListTables",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAF+1H/53keuNT8=",
+									"_parent": {
+										"$ref": "AAAAAAF+1H+6K0enhWU="
+									},
+									"type": "ArrayList<String>",
+									"direction": "return"
+								}
+							]
 						}
 					]
 				},
