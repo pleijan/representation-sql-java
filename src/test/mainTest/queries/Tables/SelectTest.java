@@ -79,13 +79,9 @@ class SelectTest implements LifecycleLoggerTest {
 
         assertEquals(expected, instance.getWheres().get(0));
         assertEquals(1,instance.getWheres().size());
-
-
-
-
-
-
     }
+
+
     @Test
     @DisplayName("from()- Adding one or several Tables")
     void from() {
@@ -112,7 +108,84 @@ class SelectTest implements LifecycleLoggerTest {
     }
 
     @Test
-    @DisplayName("printQuery()- The complete Query of SELECT")
+    @DisplayName("join()- join one or several Tables")
+    void join() {
+        String tableName = "TestTable";
+        String att1 = "att1";
+        String att2 = "att2";
+        String att3 = "att3";
+
+        Table table = new Table(tableName);
+        table.addElement(att1);
+        table.addElement(att2);
+        table.addElement(att3);
+
+        String tableName2 = "TestTable2";
+        String att21 = "att21";
+        String att22 = "att22";
+        String att23 = "att23";
+
+        Table table2 = new Table(tableName2);
+        table2.addElement(att21);
+        table2.addElement(att22);
+        table2.addElement(att23);
+
+        String operatorJ = "=";
+
+        String expected = "JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
+
+        Select instance = new Select();
+
+        instance.from(tableName); // Add the tableName to the query
+
+        instance.join(table2,table.get(att1),table2.get(att21),operatorJ);
+        String test = instance.getJoins().get(0);
+        assertEquals(instance.getJoins().get(0),expected);
+
+    }
+
+    @Test
+    @DisplayName("group by tests")
+    void groupBy() {
+        String tableName = "TestTable";
+        String att = "att1";
+        String operator = " = ";
+        String value = "NEWVALUE";
+        Table table = new Table(tableName);
+        table.addElement(att);
+        // Creation of the query
+        Select instance = new Select();
+        instance.from(tableName); // Add the tableName to the query
+        instance.groupBy(table.get(att));
+
+        String expected = "GROUP BY "+table.get(att);
+        String testo = instance.getGroupBy();
+        assertEquals(expected, instance.getGroupBy());
+
+    }
+
+    @Test
+    @DisplayName("order by tests")
+    void orderBy() {
+        String tableName = "TestTable";
+        String att = "att1";
+        String operator = " = ";
+        String value = "NEWVALUE";
+        Table table = new Table(tableName);
+        table.addElement(att);
+        // Creation of the query
+        Select instance = new Select();
+        instance.from(tableName); // Add the tableName to the query
+        instance.orderBy(table.get(att),"DESC");
+
+        String expected = "ORDER BY "+table.get(att)+" DESC";
+        String testo = instance.getOrderBys().get(0);
+        assertEquals(expected, instance.getOrderBys().get(0));
+
+    }
+
+    @Test
+    @DisplayName("printQuery() - The complete Query of SELECT")
     void printQuery() {
         // Initialization
         String tableName = "TestTable";
@@ -124,6 +197,17 @@ class SelectTest implements LifecycleLoggerTest {
         table.addElement(att1);
         table.addElement(att2);
         table.addElement(att3);
+
+        String tableName2 = "TestTable2";
+        String att21 = "att21";
+        String att22 = "att22";
+        String att23 = "att23";
+
+        Table table2 = new Table(tableName2);
+        table2.addElement(att21);
+        table2.addElement(att22);
+        table2.addElement(att23);
+
         Select instance = new Select();
 
 
@@ -137,6 +221,12 @@ class SelectTest implements LifecycleLoggerTest {
 
         //Test attributes
         String expected = "SELECT "+tableName+"."+att1+", UNIQUE("+tableName+"."+att2+"), DISTINCT("+tableName+"."+att3+") FROM "+tableName;
+        assertEquals(expected+";",instance.printQuery());
+
+        // Create joins
+        String operatorJoin = "=";
+        instance.join(table2, table.get(att1), table2.get(att21), operatorJoin);
+        expected += " JOIN TestTable2 ON "+table.get(att1)+" "+operatorJoin+" "+table2.get(att21);
         assertEquals(expected+";",instance.printQuery());
 
         // Create a condition
@@ -155,6 +245,18 @@ class SelectTest implements LifecycleLoggerTest {
 
         // Test 2 conditions
         expected += " AND WHERE "+table.get(att2)+operator+value;
+        assertEquals(expected+";",instance.printQuery());
+
+        // Test GROUP BY
+        expected += " GROUP BY "+table.get(att1);
+        instance.groupBy(table.get(att1));
+        assertEquals(expected+";",instance.printQuery());
+
+        // Test GROUP BY
+        expected += " ORDER BY "+table.get(att1) +" ASC, "+table2.get(att21) +" ASC";
+        instance.orderBy(table.get(att1),null);
+        instance.orderBy(table2.get(att21),null);
+        String testo = instance.printQuery();
         assertEquals(expected+";",instance.printQuery());
     }
 

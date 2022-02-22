@@ -20,6 +20,8 @@ public class SQL {
     public static final String LIKE = " LIKE ";
     public static final String ISNULL = " IS NULL ";
     public static final String NOTNULL = " IS NOT NULL ";
+    public static final String DESC = " DESC ";
+    public static final String ASC = " ASC ";
 
 
     /**
@@ -49,6 +51,8 @@ public class SQL {
                 return null;
         }
     }
+
+    
 
 }
 
