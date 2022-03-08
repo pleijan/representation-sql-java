@@ -8,7 +8,7 @@ public class Select extends Query {
 
     private ArrayList<String> tables;
     private ArrayList<String> joins;
-    private String groupBy;
+    private ArrayList<String> groupBys;
     private ArrayList<String> orderBys;
 
     /**
@@ -16,57 +16,10 @@ public class Select extends Query {
      */
     public Select() {
         super();
-        this.tables = new ArrayList<String>();
-        this.joins = new ArrayList<String>();
-        this.orderBys = new ArrayList<String>();
-    }
-
-    /**
-     * Add an attribute to select
-     * @param _attribute an attribute of a table
-     */
-    public void select(String _attribute) {
-        this.attributes.add(_attribute);
-    }
-
-    @Override
-    public String getTableName() {
-        return this.tables.toString();
-    }
-
-    @Override
-    public void from(String _tableName) {
-        this.tables.add(_tableName);
-    }
-
-    @Override
-    public String printQuery() {
-        String query = "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables);
-
-        //Add JOIN Conditions
-
-        if(this.joins.size() > 0)
-        {
-            query += " " + listAsString(this.joins).replace(", ", " ");
-        }
-
-        // Add WHERE Conditions
-        if(this.wheres.size() > 0){
-            query += " "+listAsString(this.wheres).replace(", "," AND ");
-        }
-
-        // Add groupBy
-       if(this.groupBy != null)
-        {
-            query += " " + groupBy;
-        }
-
-        if(this.orderBys.size() > 0){
-            query += " "+listAsString(this.orderBys);
-        }
-
-        return query+";";
-
+        this.tables = new ArrayList<>();
+        this.joins = new ArrayList<>();
+        this.groupBys = new ArrayList<>();
+        this.orderBys = new ArrayList<>();
     }
 
     /**
@@ -77,19 +30,44 @@ public class Select extends Query {
         return tables;
     }
 
+    /**
+     * Getter of Joins
+     * @return the list of JOIN statement
+     */
     public ArrayList<String> getJoins()
     {
         return joins;
     }
 
-    public String getGroupBy()
+    /**
+     * Getter of GroupBys
+     * @return the list of GROUP BY statement
+     */
+    public ArrayList<String> getGroupBys()
     {
-        return groupBy;
+        return groupBys;
     }
 
+    /**
+     * Getter of OrderBys
+     * @return the list of ORDER BY statement
+     */
     public ArrayList<String> getOrderBys()
     {
         return orderBys;
+    }
+
+    @Override
+    public String getTableName() {
+        return this.tables.toString();
+    }
+
+    /**
+     * Add an attribute to select
+     * @param _attribute an attribute of a table
+     */
+    public void select(String _attribute) {
+        this.attributes.add(_attribute);
     }
 
     /**
@@ -108,48 +86,88 @@ public class Select extends Query {
         this.attributes.add("UNIQUE("+_attribute+")");
     }
 
-    public void join(Table secondTable, String firstField, String secondField, String operator)
-    {
-        String joinQuerry = "JOIN " + secondTable.getName() + " ON " + firstField + " " + operator + " "  +secondField;
-
-        this.joins.add(joinQuerry);
+    @Override
+    public void from(String _tableName) {
+        this.tables.add(_tableName);
     }
 
+    /**
+     * TEMPORARY JOIN
+     * NEED TO BE REPLACED BY SEVERAL METHODS OR DECORATOR
+     * https://sql.sh/cours/jointures
+     * Add a JOIN statement to the query
+     * @param typeJoin      the type of join (INNER, OUTER, LEFT, RIGHT)
+     * @param secondTable   the second table to join with
+     * @param firstField    the field of the first table to check the JOIN statement
+     * @param secondField   the field of the second table to check the JOIN statement
+     * @param operator      the operator
+     */
+    public void join(String typeJoin, Table secondTable, String firstField, String secondField, String operator)
+    {
+        String joinQuery = typeJoin + "JOIN " + secondTable.getName() +
+                " ON " + firstField + " " + operator + " "  + secondField;
+
+        this.joins.add(joinQuery);
+    }
+
+    /**
+     * Add a GROUP BY Statement to the query
+     * @param field     the attribute
+     */
     public void groupBy(String field)
     {
-       if(this.groupBy == null)
-        {
-            this.groupBy = "GROUP BY " + field;
-        }
-        else
-        {
-            throw new UnsupportedOperationException("A query cannot have more than 1 GROUP BY clause.");
-        }
+        this.groupBys.add(field);
     }
 
-    public void orderBy(String field, String operator)
+    /**
+     * Add a ORDER BY statement to the query
+     * @param field     the attribute
+     * @param order     the order to sort
+     */
+    public void orderBy(String field, String order)
     {
-        String orderBy = "";
+        String orderBy = switch (order.toUpperCase()) {
 
-        if(orderBys.size() <= 0)
-        {
-            orderBy = "ORDER BY ";
-        }
+            // Descendant order
+            case "DESC" -> field + " DESC";
 
-        orderBy +=field +" ";
+            // Ascendant order
+            case "ASC" -> field + " ASC";
 
-            if(operator == null)
-            {
-                orderBy += "ASC";
-            }
-            else
-            {
-                orderBy += operator;
-            }
+            // Default (ascendant) order
+            default -> field;
+        };
 
         this.orderBys.add(orderBy);
     }
- 
+
+    @Override
+    public String printQuery() {
+        String query = "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables);
+
+        //Add JOIN Conditions
+        if(this.joins.size() > 0)
+        {
+            query += "" +listAsString(this.joins, " ");
+        }
+
+        // Add WHERE Conditions
+        if(this.wheres.size() > 0){
+            query += " "+listAsString(this.wheres," AND ");
+        }
+
+        // Add GROUP BY Conditions
+       if(this.groupBys.size() > 0)
+        {
+            query += " GROUP BY "+listAsString(this.groupBys);
+        }
+
+        // Add ORDER BY Conditions
+        if(this.orderBys.size() > 0){
+            query += " ORDER BY "+listAsString(this.orderBys);
+        }
+
+        return query+";";
+    }
 
 }
-

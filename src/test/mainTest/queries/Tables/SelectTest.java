@@ -12,19 +12,21 @@ class SelectTest implements LifecycleLoggerTest {
     @Test
     @DisplayName("select()- Add an attribute to the Query")
     void select() {
-
         // Initialization
         String tableName = "TestTable";
         String att = "att1";
+
         // Creation of the table
         Table testTable = new Table(tableName);
         testTable.addElement(att);
+
         // Creation of the query
         Select instance = new Select();
         instance.from(tableName); // Add the tableName to the query
-
         instance.select(testTable.get(att));
+
         String expected = tableName+'.'+att;
+
         assertTrue(instance.getAttributes().contains(expected));
         assertEquals(1,instance.getAttributes().size());
 
@@ -35,7 +37,10 @@ class SelectTest implements LifecycleLoggerTest {
     @Test
     @DisplayName("selectDistinct()- Create a Distinct attribute")
     void selectDistinct() {
+        // Initialization
         String att = "att1";
+
+        // Creation of the query
         Select instance = new Select();
         instance.selectDistinct(att);
 
@@ -49,7 +54,10 @@ class SelectTest implements LifecycleLoggerTest {
     @Test
     @DisplayName("selectUnique()- Create a Distinct attribute")
     void selectUnique() {
+        // Initialization
         String att = "att1";
+
+        // Creation of the query
         Select instance = new Select();
         instance.selectUnique(att);
 
@@ -63,6 +71,7 @@ class SelectTest implements LifecycleLoggerTest {
     @Test
     @DisplayName("where()- Adding condition")
     void where() {
+        // Initialization
         String tableName = "TestTable";
         String att = "att1";
         String operator = " = ";
@@ -70,9 +79,9 @@ class SelectTest implements LifecycleLoggerTest {
         Table table = new Table(tableName);
         table.addElement(att);
 
+        // Creation of the query
         Select instance = new Select();
         instance.from(tableName); // Add the tableName to the query
-
         instance.where(table.get(att),operator,value);
 
         String expected = "WHERE "+table.get(att)+operator+value;
@@ -85,10 +94,12 @@ class SelectTest implements LifecycleLoggerTest {
     @Test
     @DisplayName("from()- Adding one or several Tables")
     void from() {
+        // Initialization
         String tableName = "TestTable";
         String tableName2 = "TestTable2";
         String tableName3 = "TestTable3";
         String tableName4 = "TestTable4";
+
         // Creation of the query
         Select instance = new Select();
         instance.from(tableName); // Add the tableName to the query
@@ -110,6 +121,7 @@ class SelectTest implements LifecycleLoggerTest {
     @Test
     @DisplayName("join()- join one or several Tables")
     void join() {
+        // Initialization
         String tableName = "TestTable";
         String att1 = "att1";
         String att2 = "att2";
@@ -130,58 +142,69 @@ class SelectTest implements LifecycleLoggerTest {
         table2.addElement(att22);
         table2.addElement(att23);
 
+        // Creation of the query
         String operatorJ = "=";
-
-        String expected = "JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
-
         Select instance = new Select();
-
         instance.from(tableName); // Add the tableName to the query
 
-        instance.join(table2,table.get(att1),table2.get(att21),operatorJ);
-        String test = instance.getJoins().get(0);
+        // Test the first join
+        String expected = " JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
+
+        instance.join("",table2,table.get(att1),table2.get(att21),operatorJ);
+
         assertEquals(instance.getJoins().get(0),expected);
+
+        // Test the second join
+        String expected2 = "INNER JOIN "+table2.getName()+" ON "+ table.get(att2) + " " + operatorJ +" "+table2.get(att22);
+        instance.join("INNER",table2,table.get(att2),table2.get(att22),operatorJ);
+
+        assertEquals(instance.getJoins().get(1),expected2);
+
+        // Test both
+        String expected3 = expected + " " +  expected2;
+        String test = instance.getJoins().get(0) + " " + instance.getJoins().get(1);
+        assertEquals(expected3,test);
 
     }
 
     @Test
     @DisplayName("group by tests")
     void groupBy() {
+        // Initialization
         String tableName = "TestTable";
         String att = "att1";
-        String operator = " = ";
-        String value = "NEWVALUE";
+
         Table table = new Table(tableName);
         table.addElement(att);
+
         // Creation of the query
         Select instance = new Select();
         instance.from(tableName); // Add the tableName to the query
         instance.groupBy(table.get(att));
 
-        String expected = "GROUP BY "+table.get(att);
-        String testo = instance.getGroupBy();
-        assertEquals(expected, instance.getGroupBy());
-
+        assertEquals(1, instance.getGroupBys().size());
+        String expected = table.get(att);
+        assertEquals(expected, instance.getGroupBys().get(0));
     }
 
     @Test
     @DisplayName("order by tests")
     void orderBy() {
+        // Initialization
         String tableName = "TestTable";
         String att = "att1";
         String operator = " = ";
         String value = "NEWVALUE";
         Table table = new Table(tableName);
         table.addElement(att);
+
         // Creation of the query
         Select instance = new Select();
         instance.from(tableName); // Add the tableName to the query
         instance.orderBy(table.get(att),"DESC");
 
         String expected = "ORDER BY "+table.get(att)+" DESC";
-        String testo = instance.getOrderBys().get(0);
         assertEquals(expected, instance.getOrderBys().get(0));
-
     }
 
     @Test
@@ -208,11 +231,9 @@ class SelectTest implements LifecycleLoggerTest {
         table2.addElement(att22);
         table2.addElement(att23);
 
+        // Creation of the query
         Select instance = new Select();
-
-
         instance.from(tableName); // Add the tableName to the query
-
 
         // Select the attributes
         instance.select(table.get(att1));
@@ -220,12 +241,15 @@ class SelectTest implements LifecycleLoggerTest {
         instance.selectDistinct(table.get(att3));
 
         //Test attributes
-        String expected = "SELECT "+tableName+"."+att1+", UNIQUE("+tableName+"."+att2+"), DISTINCT("+tableName+"."+att3+") FROM "+tableName;
+        String expected = "SELECT "+tableName+"."+att1+", " +
+                "UNIQUE("+tableName+"."+att2+"), " +
+                "DISTINCT("+tableName+"."+att3+") FROM "+tableName;
+
         assertEquals(expected+";",instance.printQuery());
 
         // Create joins
         String operatorJoin = "=";
-        instance.join(table2, table.get(att1), table2.get(att21), operatorJoin);
+        instance.join(" ", table2, table.get(att1), table2.get(att21), operatorJoin);
         expected += " JOIN TestTable2 ON "+table.get(att1)+" "+operatorJoin+" "+table2.get(att21);
         assertEquals(expected+";",instance.printQuery());
 
@@ -241,7 +265,7 @@ class SelectTest implements LifecycleLoggerTest {
         // Create a second condition
         operator = " = ";
         value = "NEWVALUE2";
-        instance.where(table.get(att2),operator,value);
+        instance.where(table.get(att2), operator, value);
 
         // Test 2 conditions
         expected += " AND WHERE "+table.get(att2)+operator+value;
@@ -253,12 +277,9 @@ class SelectTest implements LifecycleLoggerTest {
         assertEquals(expected+";",instance.printQuery());
 
         // Test GROUP BY
-        expected += " ORDER BY "+table.get(att1) +" ASC, "+table2.get(att21) +" ASC";
-        instance.orderBy(table.get(att1),null);
-        instance.orderBy(table2.get(att21),null);
-        String testo = instance.printQuery();
+        expected += " ORDER BY "+table.get(att1) +", "+table2.get(att21);
+        instance.orderBy(table.get(att1),"");
+        instance.orderBy(table2.get(att21),"");
         assertEquals(expected+";",instance.printQuery());
     }
-
-
 }
