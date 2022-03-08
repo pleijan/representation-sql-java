@@ -30,7 +30,7 @@ public class SQL {
      * @param _query the name of the query
      * @return a Query object
      */
-    public Query create(String _query) {
+    public Query make(String _query) {
         switch (_query.toLowerCase()) {
 
             case "select":

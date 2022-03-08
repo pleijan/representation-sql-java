@@ -12,19 +12,19 @@ class SQLTest implements LifecycleLoggerTest {
     @Test
     void create() {
         SQL sql = new SQL();
-        Query select = sql.create("select");
+        Query select = sql.make("select");
         assertEquals(select.getClass(),Select.class);
 
-        Query drop = sql.create("drop");
+        Query drop = sql.make("drop");
         assertEquals(drop.getClass(),Drop.class);
 
-        Query create = sql.create("create");
+        Query create = sql.make("create");
         assertEquals(create.getClass(), Create.class);
 
-        Query insert = sql.create("insert");
+        Query insert = sql.make("insert");
         assertEquals(insert.getClass(), Insert.class);
 
-        Query update = sql.create("update");
+        Query update = sql.make("update");
         assertEquals(update.getClass(), Update.class);
     }
 
