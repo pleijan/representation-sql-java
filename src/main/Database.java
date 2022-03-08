@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-public class DataBase {
+public class Database {
     private ArrayList<Table> listTables;
     private String name;
 
@@ -10,8 +10,9 @@ public class DataBase {
      * default constructor of Database
      * @param name name of the database
      */
-    public void Database(String name){
+    public Database(String name){
         this.name = name;
+        this.listTables = new ArrayList<Table>();
     }
 
     /**
