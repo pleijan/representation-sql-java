@@ -2,7 +2,6 @@ package main.queries.Tables;
 
 import main.Table;
 import main.queries.Query;
-
 import java.util.ArrayList;
 
 public class Select extends Query {
