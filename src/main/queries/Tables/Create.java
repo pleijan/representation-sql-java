@@ -11,12 +11,24 @@ public class Create extends Query {
 
     /**
      * default constructor of Create
-     * @param state state of the create 1 for DATABASE, 0 for TABLE
-     * @param name Name of the object we want to create
      */
-    public Create(Boolean state, String name){
+    public Create(){
+    }
+
+    /**
+     * this function set the state of the create function
+     * @param state
+     */
+    public void addState(Boolean state){
         this.state = state;
-        this.name=name;
+    }
+
+    /**
+     * this function set the name of the create function
+     * @param name
+     */
+    public void addName(String name){
+        this.name = name;
     }
 
     @Override

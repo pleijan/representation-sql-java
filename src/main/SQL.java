@@ -44,9 +44,9 @@ public class SQL {
 
             case "update":
                 return new Update();
-/*
+
             case "create":
-                return new Create();*/
+                return new Create();
             default:
                 return null;
         }
