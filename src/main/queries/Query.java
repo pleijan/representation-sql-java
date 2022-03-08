@@ -66,6 +66,27 @@ public abstract class Query {
         return res;
     }
 
+    /**
+     *
+     * @param _list         the list of element (Attributes, Tables etc)
+     * @param separator     the separator element
+     * @return the elements separate by a separator
+     */
+    protected String listAsString(ArrayList<String> _list,String separator) {
+        StringBuilder res = new StringBuilder();
+
+        // Save each string except the last one in this form: (as example)
+        // attribute, attribute, attribute,
+        // table, table, table
+        for(int i = 0; i<_list.size()-1; i++) {
+            res.append(_list.get(i)).append(separator);
+        }
+
+        // And then add the last string without the comma
+        res.append(_list.get(_list.size() - 1));
+
+        return res.toString();
+    }
 
     // FOR Select and Update
     /**
