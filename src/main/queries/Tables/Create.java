@@ -4,6 +4,10 @@ import main.queries.Query;
 
 import java.util.ArrayList;
 
+/**
+ * This class reproduces the action of the CREATE method in SQL, it is used to create a database or a table
+ */
+
 public class Create extends Query {
 
     private boolean state;

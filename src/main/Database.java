@@ -2,6 +2,10 @@ package main;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a database in SQL, so it has a name and a list of tables
+ */
+
 public class Database {
     private ArrayList<Table> listTables;
     private String name;

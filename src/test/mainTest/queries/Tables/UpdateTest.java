@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+/**
+ * This is the class to test the update of a table
+ */
+
 class UpdateTest implements LifecycleLoggerTest{
 
     @Test

@@ -7,6 +7,10 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This is the class to test the selection of values with groups, order, joins and conditions
+ */
+
 class SelectTest implements LifecycleLoggerTest {
 
     @Test

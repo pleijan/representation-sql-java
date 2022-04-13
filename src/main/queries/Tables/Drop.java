@@ -4,6 +4,10 @@ import main.queries.Query;
 
 import java.util.ArrayList;
 
+/**
+ * This class reproduces the action of the DROP method in SQL, it is used to drop a table
+ */
+
 public class Drop extends Query {
 
     /**

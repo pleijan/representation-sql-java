@@ -5,7 +5,7 @@ import main.queries.Query;
 import main.queries.Tables.*;
 
 /**
- * Main class of the project
+ * This class is composed of the SQL operators and the query factory
  */
 public class SQL {
     // OPERATOR

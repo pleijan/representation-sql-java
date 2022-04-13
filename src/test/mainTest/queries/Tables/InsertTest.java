@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+/**
+ * This is the class for testing the insertion of values into a table
+ */
+
 class InsertTest implements LifecycleLoggerTest {
 
     @Test
