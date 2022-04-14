@@ -38,7 +38,9 @@ class CreateTest implements LifecycleLoggerTest {
         Create instance = new Create();
         instance.addName("TableName");
         instance.addState(Boolean.FALSE);
-        String queryString="CREATE TABLE TableName;";
+        instance.addColumn("ok","bit",true);
+        String queryString="CREATE TABLE TableName (\nok bit NULL ;";
+        String test = instance.printQuery();
         assertEquals(instance.printQuery(),queryString);
     }
 

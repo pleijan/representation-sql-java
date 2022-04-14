@@ -74,7 +74,5 @@ public class SuiteTest {
         /** SQLTest class */
 
         SQLTest sqlTest = new SQLTest();
-
-        sqlTest.create();
     }
 }

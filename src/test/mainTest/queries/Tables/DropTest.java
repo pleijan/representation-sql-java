@@ -42,8 +42,8 @@ class DropTest implements LifecycleLoggerTest {
 
         // Creation of the query
         Drop instance = new Drop();
-        instance.from(tableName); // Add the tableName to the query
-
+        instance.addName(tableName); // Add the tableName to the query
+        instance.addState(false);
         assertEquals(stringQuery,instance.printQuery());
     }
 }

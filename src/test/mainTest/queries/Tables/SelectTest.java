@@ -152,14 +152,14 @@ class SelectTest implements LifecycleLoggerTest {
         instance.from(tableName); // Add the tableName to the query
 
         // Test the first join
-        String expected = "JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
+        String expected = "INNER JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
 
-        instance.join("",table2.getName(),table.get(att1),table2.get(att21),operatorJ);
+        instance.join("INNER",table2.getName(),table.get(att1),table2.get(att21),operatorJ);
 
         assertEquals(expected, instance.getJoins().get(0));
 
         // Test the second join
-        String expected2 = "INNERJOIN "+table2.getName()+" ON "+ table.get(att2) + " " + operatorJ +" "+table2.get(att22);
+        String expected2 = "INNER JOIN "+table2.getName()+" ON "+ table.get(att2) + " " + operatorJ +" "+table2.get(att22);
         instance.join("INNER",table2.getName(),table.get(att2),table2.get(att22),operatorJ);
 
         assertEquals(expected2, instance.getJoins().get(1));
@@ -248,13 +248,13 @@ class SelectTest implements LifecycleLoggerTest {
         String expected = "SELECT "+tableName+"."+att1+", " +
                 "UNIQUE("+tableName+"."+att2+"), " +
                 "DISTINCT("+tableName+"."+att3+") FROM "+tableName;
-
-        assertEquals(expected+";",instance.printQuery());
+        assertEquals(expected+" ;",instance.printQuery());
 
         // Create joins
         String operatorJoin = "=";
-        instance.join(" ", table2.getName(), table.get(att1), table2.get(att21), operatorJoin);
-        expected += " JOIN TestTable2 ON "+table.get(att1)+" "+operatorJoin+" "+table2.get(att21);
+        instance.join("", table2.getName(), table.get(att1), table2.get(att21), operatorJoin);
+        expected += "  JOIN TestTable2 ON "+table.get(att1)+" "+operatorJoin+" "+table2.get(att21);
+
         assertEquals(expected+";",instance.printQuery());
 
         // Create a condition

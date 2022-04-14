@@ -50,11 +50,11 @@ public class Create extends Query {
             return("CREATE DATABASE "+name+";");
         }
         else {
-            query += "CREATE TABLE " + name + " ( \n";
+            query += "CREATE TABLE " + name + " (";
             for (Column column : columns) {
-                query += column.getName() + " " + column.getDataType() + " " + column.getNullable() + "\n";
+                query +=  "\n" +column.getName() + " " + column.getDataType() + " " + column.getNullable();
             }
-            return query;
+            return query + " ;";
         }
     }
 
