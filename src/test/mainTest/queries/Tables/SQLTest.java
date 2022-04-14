@@ -13,23 +13,5 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SQLTest implements LifecycleLoggerTest {
 
-    @Test
-    void create() {
-        SQL sql = new SQL();
-        Query select = sql.make("select");
-        assertEquals(select.getClass(),Select.class);
-
-        Query drop = sql.make("drop");
-        assertEquals(drop.getClass(),Drop.class);
-
-        Query create = sql.make("create");
-        assertEquals(create.getClass(), Create.class);
-
-        Query insert = sql.make("insert");
-        assertEquals(insert.getClass(), Insert.class);
-
-        Query update = sql.make("update");
-        assertEquals(update.getClass(), Update.class);
-    }
 
 }

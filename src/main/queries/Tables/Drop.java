@@ -1,5 +1,6 @@
 package main.queries.Tables;
 
+import main.Column;
 import main.queries.Query;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 
 public class Drop extends Query {
 
+    private boolean state;
+    private String name;
     /**
      * Default constructor of Drop
      */
@@ -17,13 +20,28 @@ public class Drop extends Query {
         tableName = "";
     }
 
+    public void addState(Boolean state){
+        this.state = state;
+    }
+
+    /**
+     * this function set the name of the create function
+     * @param name
+     */
+    public void addName(String name){
+        this.name = name;
+    }
+
     @Override
     public String printQuery() {
-        if (tableName == "") {
-            System.err.println("The Table name is missing.");
-            return "";
-        } else {
-            return "DROP TABLE " + tableName + ";";
+        String query = "";
+        if (state)
+        {
+            return("DROP DATABASE "+name+";");
+        }
+        else {
+            query += "DROP TABLE " + name+";";
+            return query;
         }
     }
 
@@ -35,6 +53,18 @@ public class Drop extends Query {
     @Override
     public ArrayList<String> getWheres() {
         throw new UnsupportedOperationException("Method not implemented");
+    }
+
+    public boolean getState(){
+        return state;
+    }
+
+    /**
+     * Getter of Name
+     * @return the name of the created object
+     */
+    public String getName() {
+        return name;
     }
 }
 
