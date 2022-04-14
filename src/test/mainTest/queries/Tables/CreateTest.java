@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This is the class to test the creation of databases and tables
+ */
+
 class CreateTest implements LifecycleLoggerTest {
 
 

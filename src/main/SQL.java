@@ -13,7 +13,7 @@ import static main.SQL.SQLCOMMANDS.UPDATE;
 import static main.SQL.SQLCOMMANDS.DELETE;
 
 /**
- * Main class of the project
+ * This class is composed of the SQL operators and the query factory
  */
 public class SQL {
     // OPERATOR

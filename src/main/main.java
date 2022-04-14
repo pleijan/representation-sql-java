@@ -6,6 +6,10 @@ import main.queries.Tables.Update;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * This is the Main class, it allows to try our library
+ */
+
 public class main {
 
     public static void main(String[] args) {

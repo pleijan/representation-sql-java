@@ -4,6 +4,10 @@ import main.queries.Query;
 
 import java.util.ArrayList;
 
+/**
+ * This class reproduces the action of the INSERT method in SQL, it is used to insert values in a table
+ */
+
 public class Insert extends Query {
 
     ArrayList<String> listCol;

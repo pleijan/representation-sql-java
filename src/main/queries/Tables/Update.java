@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import static org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.Conversions.replace;
 
+/**
+ * This class reproduces the action of the UPDATE method in SQL, it is used to update values from a table
+ */
+
 public class Update extends Query {
 
     private ArrayList<String> newValue;

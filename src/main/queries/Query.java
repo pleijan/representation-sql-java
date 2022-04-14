@@ -2,6 +2,10 @@ package main.queries;
 
 import java.util.ArrayList;
 
+/**
+ * This class is the mother class of all queries, it takes as parameter the name of the table, the attributes and the conditions
+ */
+
 public abstract class Query {
 
     protected String tableName;

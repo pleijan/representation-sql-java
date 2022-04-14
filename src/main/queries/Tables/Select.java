@@ -4,6 +4,11 @@ import main.Table;
 import main.queries.Query;
 import java.util.ArrayList;
 
+/**
+ * This class reproduces the action of the SELECT method in SQL, it is used to select values from a table
+ * This includes joins, groups, orders
+ */
+
 public class Select extends Query {
 
     private ArrayList<String> tables;

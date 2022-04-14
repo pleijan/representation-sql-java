@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+/**
+ * This is the class to test adding a table to a new database
+ */
+
 class DatabaseTest {
 
     @Test

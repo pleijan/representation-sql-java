@@ -7,6 +7,10 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This is the class to test the selection of values with groups, order, joins and conditions
+ */
+
 class SelectTest implements LifecycleLoggerTest {
 
     @Test
@@ -148,17 +152,17 @@ class SelectTest implements LifecycleLoggerTest {
         instance.from(tableName); // Add the tableName to the query
 
         // Test the first join
-        String expected = " JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
+        String expected = "JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
 
         instance.join("",table2.getName(),table.get(att1),table2.get(att21),operatorJ);
 
-        assertEquals(instance.getJoins().get(0),expected);
+        assertEquals(expected, instance.getJoins().get(0));
 
         // Test the second join
-        String expected2 = "INNER JOIN "+table2.getName()+" ON "+ table.get(att2) + " " + operatorJ +" "+table2.get(att22);
+        String expected2 = "INNERJOIN "+table2.getName()+" ON "+ table.get(att2) + " " + operatorJ +" "+table2.get(att22);
         instance.join("INNER",table2.getName(),table.get(att2),table2.get(att22),operatorJ);
 
-        assertEquals(instance.getJoins().get(1),expected2);
+        assertEquals(expected2, instance.getJoins().get(1));
 
         // Test both
         String expected3 = expected + " " +  expected2;
@@ -203,7 +207,7 @@ class SelectTest implements LifecycleLoggerTest {
         instance.from(tableName); // Add the tableName to the query
         instance.orderBy(table.get(att),"DESC");
 
-        String expected = "ORDER BY "+table.get(att)+" DESC";
+        String expected = table.get(att)+" DESC";
         assertEquals(expected, instance.getOrderBys().get(0));
     }
 
