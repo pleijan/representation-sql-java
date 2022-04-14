@@ -150,13 +150,13 @@ class SelectTest implements LifecycleLoggerTest {
         // Test the first join
         String expected = " JOIN "+table2.getName()+" ON "+ table.get(att1) + " " + operatorJ +" "+table2.get(att21);
 
-        instance.join("",table2,table.get(att1),table2.get(att21),operatorJ);
+        instance.join("",table2.getName(),table.get(att1),table2.get(att21),operatorJ);
 
         assertEquals(instance.getJoins().get(0),expected);
 
         // Test the second join
         String expected2 = "INNER JOIN "+table2.getName()+" ON "+ table.get(att2) + " " + operatorJ +" "+table2.get(att22);
-        instance.join("INNER",table2,table.get(att2),table2.get(att22),operatorJ);
+        instance.join("INNER",table2.getName(),table.get(att2),table2.get(att22),operatorJ);
 
         assertEquals(instance.getJoins().get(1),expected2);
 
@@ -249,7 +249,7 @@ class SelectTest implements LifecycleLoggerTest {
 
         // Create joins
         String operatorJoin = "=";
-        instance.join(" ", table2, table.get(att1), table2.get(att21), operatorJoin);
+        instance.join(" ", table2.getName(), table.get(att1), table2.get(att21), operatorJoin);
         expected += " JOIN TestTable2 ON "+table.get(att1)+" "+operatorJoin+" "+table2.get(att21);
         assertEquals(expected+";",instance.printQuery());
 

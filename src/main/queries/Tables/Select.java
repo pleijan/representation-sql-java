@@ -97,14 +97,14 @@ public class Select extends Query {
      * https://sql.sh/cours/jointures
      * Add a JOIN statement to the query
      * @param typeJoin      the type of join (INNER, OUTER, LEFT, RIGHT)
-     * @param secondTable   the second table to join with
+     * @param secondTableName   the second table to join with
      * @param firstField    the field of the first table to check the JOIN statement
      * @param secondField   the field of the second table to check the JOIN statement
      * @param operator      the operator
      */
-    public void join(String typeJoin, Table secondTable, String firstField, String secondField, String operator)
+    public void join(String typeJoin, String secondTableName, String firstField, String secondField, String operator)
     {
-        String joinQuery = typeJoin + "JOIN " + secondTable.getName() +
+        String joinQuery = typeJoin + " JOIN " + secondTableName +
                 " ON " + firstField + " " + operator + " "  + secondField;
 
         this.joins.add(joinQuery);
@@ -143,7 +143,7 @@ public class Select extends Query {
 
     @Override
     public String printQuery() {
-        String query = "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables);
+        String query = "SELECT "+ listAsString(this.attributes) + " FROM "+ listAsString(this.tables)+" ";
 
         //Add JOIN Conditions
         if(this.joins.size() > 0)

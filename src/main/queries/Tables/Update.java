@@ -54,7 +54,14 @@ public class Update extends Query {
 
     @Override
     public String printQuery() {
-        return "UPDATE "+getTableName()+ " SET " + listAsString(colEqualsVal())+ ";"  ;
+        String query="";
+        query+= "UPDATE "+getTableName()+ " SET " + listAsString(colEqualsVal())  ;
+
+        // Add WHERE Conditions
+        if(this.wheres.size() > 0){
+            query += " "+listAsString(this.wheres," AND ");
+        }
+        return query+=";";
     }
 
     public ArrayList<String> getNewValue() {

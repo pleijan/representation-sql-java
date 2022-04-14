@@ -70,5 +70,7 @@ public class main {
         instanceInsert2.insert("val3");
 
         System.out.println(instanceInsert2.printQuery());
+
+        InterfaceCLI client = new InterfaceCLI();
     }
 }

@@ -1,18 +1,20 @@
 package main.queries.Tables;
 
+import main.Column;
 import main.queries.Query;
-
 import java.util.ArrayList;
 
 public class Create extends Query {
 
     private boolean state;
     private String name;
+    private ArrayList<Column> columns;
 
     /**
      * default constructor of Create
      */
     public Create(){
+        columns = new ArrayList<>();
     }
 
     /**
@@ -31,10 +33,25 @@ public class Create extends Query {
         this.name = name;
     }
 
+    public void addColumn(String name, String dataType, boolean nullable)
+    {
+        columns.add(new Column(name,dataType,nullable));
+    }
+
     @Override
     public String printQuery(){
-        if (state==true) return("CREATE DATABASE "+name+";");
-        else return("CREATE TABLE "+name+";");
+        String query = "";
+        if (state)
+        {
+            return("CREATE DATABASE "+name+";");
+        }
+        else {
+            query += "CREATE TABLE " + name + " ( \n";
+            for (Column column : columns) {
+                query += column.getName() + " " + column.getDataType() + " " + column.getNullable() + "\n";
+            }
+            return query;
+        }
     }
 
     /**
