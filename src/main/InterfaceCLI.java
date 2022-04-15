@@ -104,11 +104,11 @@ public class InterfaceCLI {
         String tableName = s.nextLine();
         select.from(tableName);
 
-        System.out.println("Entrez le nom de du champs a selectionner dans la table :");
+        System.out.println("Entrez le nom de du champ a selectionner dans la table :");
         String champ = s.nextLine();
         select.select(champ);
 
-        System.out.println("voulez vous ajouter un join ? si oui cliquez sur 1 , sinon sur 2");
+        System.out.println("voulez-vous ajouter un join ? si oui cliquez sur 1 , sinon sur 2");
         choix =  Integer.parseInt(s.nextLine());
 
         //add join
@@ -116,28 +116,28 @@ public class InterfaceCLI {
         {
             System.out.println("Entrez le type de join ( INNER, LEFT...) :");
             String type = s.nextLine();
-            System.out.println("Entrez le nom de la jointe :");
+            System.out.println("Entrez le nom de la jointure :");
             String secondTable = s.nextLine();
-            System.out.println("Entrez le nom du premier champs joint :");
+            System.out.println("Entrez le nom du premier champ joint :");
             String firstField = s.nextLine();
             System.out.println("Entrez l'operateur pour la jointure ( + = < ..) : ");
             String operator = s.nextLine();
-            System.out.println("Entrez le nom du second champs joint :");
+            System.out.println("Entrez le nom du second champ joint :");
             String secondField = s.nextLine();
             select.join(type,secondTable,firstField,secondField,operator);
         }
 
-        System.out.println("voulez vous ajouter un where ? si oui cliquez sur 1 , sinon sur 2");
+        System.out.println("voulez-vous ajouter un where ? si oui cliquez sur 1 , sinon sur 2");
         choix =  Integer.parseInt(s.nextLine());
 
         //add where
         if(choix == 1)
         {
-            System.out.println("Entrez l'attribue ou le champs de la condition : ");
+            System.out.println("Entrez l'attribu ou le champ de la condition : ");
             String attribute = s.nextLine();
             System.out.println("Entrez l'operateur :");
             String operator = s.nextLine();
-            System.out.println("Entrez la valeur ou le champs comparé :");
+            System.out.println("Entrez la valeur ou le champ comparé :");
             String value = s.nextLine();
             select.where(attribute,operator,value);
         }
@@ -148,7 +148,7 @@ public class InterfaceCLI {
         //add grouby
         if(choix == 1)
         {
-            System.out.println("Entrez le champs par le quel grouper : ");
+            System.out.println("Entrez le champ par lequel grouper : ");
             String attribute = s.nextLine();
             select.groupBy(attribute);
         }
@@ -159,9 +159,9 @@ public class InterfaceCLI {
         //add orderby
         if(choix == 1)
         {
-            System.out.println("Entrez le champs par le quel ordonner : ");
+            System.out.println("Entrez le champ par lequel ordonner : ");
             String attribute = s.nextLine();
-            System.out.println("Entrez ASC ou DESC  : ");
+            System.out.println("Entrez ASC ou DESC : ");
             String asc = s.nextLine();
             select.orderBy(attribute,asc);
         }
@@ -193,23 +193,23 @@ public class InterfaceCLI {
         String tableName = s.nextLine();
         update.from(tableName);
 
-        System.out.println("Entrez le nom de la colone pour l'insertion : ");
+        System.out.println("Entrez le nom de la colone pour la modification : ");
         String col = s.nextLine();
-        System.out.println("Entrez la valeur  : ");
+        System.out.println("Entrez la nouvelle valeur  : ");
         String val = s.nextLine();
         update.update(col,val);
 
-        System.out.println("voulez vous ajouter un where ? si oui cliquez sur 1 , sinon sur 2");
+        System.out.println("voulez-vous ajouter un where ? si oui cliquez sur 1 , sinon sur 2");
         choix =  Integer.parseInt(s.nextLine());
 
         //add where
         if(choix == 1)
         {
-            System.out.println("Entrez l'attribue ou le champs de la condition : ");
+            System.out.println("Entrez l'attribu ou le champ de la condition : ");
             String attribute = s.nextLine();
             System.out.println("Entrez l'operateur :");
             String operator = s.nextLine();
-            System.out.println("Entrez la valeur ou le champs comparé :");
+            System.out.println("Entrez la valeur ou le champ comparé :");
             String value = s.nextLine();
             update.where(attribute,operator,value);
         }
@@ -225,14 +225,14 @@ public class InterfaceCLI {
 
         if(isDataBase)
         {
-            System.out.println("Entrez le nom de la base de donnée :");
+            System.out.println("Entrez le nom de la base de données :");
             name = s.nextLine();
             drop.addName(name);
             drop.addState(true);
         }
         else
         {
-            System.out.println("Entrez le nom de la table  :");
+            System.out.println("Entrez le nom de la table :");
             name = s.nextLine();
             drop.addName(name);
             drop.addState(false);
@@ -241,7 +241,7 @@ public class InterfaceCLI {
         System.out.println(drop.printQuery());
     }
 
-    //Create fucntion CLI
+    //Create function CLI
     public void CreateCLI(Create create, boolean isDataBase)
     {
         int choix;
@@ -249,7 +249,7 @@ public class InterfaceCLI {
 
         if(isDataBase)
         {
-            System.out.println("Entrez le nom de la base de donnée :");
+            System.out.println("Entrez le nom de la base de données :");
             name = s.nextLine();
             create.addName(name);
             create.addState(true);
@@ -261,11 +261,11 @@ public class InterfaceCLI {
             create.addName(name);
             create.addState(false);
 
-            System.out.println("Entrez le nom d'une colone' :");
+            System.out.println("Entrez le nom d'une colone :");
             String col = s.nextLine();
-            System.out.println("Entrez le datatype de la colone' :");
+            System.out.println("Entrez le datatype de la colone :");
             String dataType = s.nextLine();
-            System.out.println("le champs est t'il null : 1) oui 2) non :");
+            System.out.println("le champs est-il null ? : 1) oui 2) non :");
             int nullableChoix = Integer.parseInt(s.nextLine());
             boolean nullable = nullableChoix != 2;
 
@@ -283,17 +283,17 @@ public class InterfaceCLI {
         String tableName = s.nextLine();
         delete.from(tableName);
 
-        System.out.println("voulez vous ajouter un where ? si oui cliquez sur 1 , sinon sur 2");
+        System.out.println("voulez-vous ajouter un where ? si oui cliquez sur 1 , sinon sur 2");
         choix =  Integer.parseInt(s.nextLine());
 
         //ad where
         if(choix == 1)
         {
-            System.out.println("Entrez l'attribue ou le champs de la condition : ");
+            System.out.println("Entrez l'attribu ou le champ de la condition : ");
             String attribute = s.nextLine();
             System.out.println("Entrez l'operateur :");
             String operator = s.nextLine();
-            System.out.println("Entrez la valeur ou le champs comparé :");
+            System.out.println("Entrez la valeur ou le champ comparé :");
             String value = s.nextLine();
             delete.where(attribute,operator,value);
         }
