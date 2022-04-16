@@ -75,6 +75,10 @@ public class InterfaceCLI {
                 }
             }
         }
+        catch (NumberFormatException exception)
+        {
+            System.out.println("Vous avez essayeer d'entrer un chiffre eu lieu de lettre lors de votre choix ....");
+        }
         catch (Exception e){
             System.out.println("Une erreur est survenue !");
             System.out.println(e.getMessage());

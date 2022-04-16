@@ -50,15 +50,6 @@ public class Drop extends Query {
         throw new UnsupportedOperationException("Method not implemented");
     }
 
-    @Override
-    public ArrayList<String> getWheres() {
-        throw new UnsupportedOperationException("Method not implemented");
-    }
-
-    public boolean getState(){
-        return state;
-    }
-
     /**
      * Getter of Name
      * @return the name of the created object

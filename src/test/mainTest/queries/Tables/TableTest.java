@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TableTest {
 
+    TableTest(){};
 
     @Test
     void Table() {

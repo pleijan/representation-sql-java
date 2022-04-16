@@ -15,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class UpdateTest implements LifecycleLoggerTest{
 
+    UpdateTest(){};
+
     @Test
     @DisplayName("from()")
     void from() {
@@ -53,7 +55,7 @@ class UpdateTest implements LifecycleLoggerTest{
     @DisplayName("queryString()-")
     void printQuery() {
         String tableName = "TestTable";
-        String stringQuery = "UPDATE "+tableName+" SET col1 = val1;";
+        String stringQuery = "UPDATE "+tableName+" SET col1 = val1";
         // Creation of the table
         Table testTable = new Table(tableName);
 
@@ -64,6 +66,17 @@ class UpdateTest implements LifecycleLoggerTest{
 
         instance.update("col1","val1"); //Add couple of arguments to update
 
-        assertEquals(stringQuery,instance.printQuery());
+        assertEquals(stringQuery+";",instance.printQuery());
+
+        // Create a condition
+        String colName = "testo";
+        String operator = " >= ";
+        String value = "NEWVALUE";
+        instance.where(colName,operator,value);
+
+        // Test one condition
+        stringQuery+= " WHERE "+colName+operator+value;
+        String ok = instance.printQuery();
+        assertEquals(stringQuery+";",instance.printQuery());
     }
 }

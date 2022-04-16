@@ -32,8 +32,4 @@ public class Column {
         if (nullable) return "NULL";
         else return " NOT NULL";
     }
-
-    public void setNullable(boolean nullable){
-        this.nullable = nullable;
-    }
 }

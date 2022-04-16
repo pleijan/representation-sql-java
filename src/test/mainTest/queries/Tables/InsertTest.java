@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class InsertTest implements LifecycleLoggerTest {
 
+    InsertTest(){};
+
     @Test
     @DisplayName("from()")
     void from() {
