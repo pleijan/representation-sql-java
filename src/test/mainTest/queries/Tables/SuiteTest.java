@@ -71,8 +71,11 @@ public class SuiteTest {
         tableTest.testAddElement();
         tableTest.removeElement();
 
-        /** SQLTest class */
+        /** Delete class */
 
-        SQLTest sqlTest = new SQLTest();
+        DeleteTest deleteTest = new DeleteTest();
+
+        deleteTest.from();
+        deleteTest.printQuery();
     }
 }

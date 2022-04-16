@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SelectTest implements LifecycleLoggerTest {
 
+    SelectTest(){};
+
     @Test
     @DisplayName("select()- Add an attribute to the Query")
     void select() {

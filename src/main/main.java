@@ -1,8 +1,9 @@
 package main;
 
-import main.queries.Tables.Drop;
-import main.queries.Tables.Insert;
-import main.queries.Tables.Update;
+import main.queries.Tables.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,28 +15,68 @@ public class main {
 
     public static void main(String[] args) {
 
+        // ------------------ Test de la fonction CREATE ( BD ET TABLE) ----------------------
+        Create createBd = new Create();
+        createBd.addName("BdTest");
+        createBd.addState(true);
+        String Bdname= createBd.getName();
+        Boolean isDatabase = createBd.getState();
+        createBd.printQuery();
+
+        Create createTable = new Create();
+        createTable.addName("tabletest");
+        createTable.addState(false);
+        createTable.addColumn("why","varchar(255)",true);
+        String tableNametest = createTable.getName();
+        Boolean isTable = createTable.getState();
+        createTable.printQuery();
+
+        // ------------------ Test de la fonction Delete ----------------------
+
+        Delete deleteTest = new Delete();
+        deleteTest.from("tableok");
+        deleteTest.where("ok",">","5");
+        deleteTest.printQuery();
+
+
         // ------------------ Test de la fonction Drop ----------------------
 
         // Creation of the table tableName
         Table testTable = new Table("tableName");
+        testTable.addElement("ok");
+        ArrayList<String> testArray = testTable.getElements();
+        String testArrayElement = testTable.get("ok");
+        testTable.removeElement("ok");
+        String tableName = testTable.getName();
 
         // Creation of the query
         Drop instance = new Drop();
-        instance.from("tableName");
+        instance.addState(false);
+        instance.addName("tableName");
+        String tableDropName = instance.getName();
 
         System.out.println(instance.printQuery());
+
+        //ooooooo by BD
+
+        // Creation of the query
+        Drop instanceDb = new Drop();
+        instanceDb.addState(true);
+        instanceDb.addName("tableName");
+
+        System.out.println(instanceDb.printQuery());
 
         // ------------------------------------------------------------------
 
         // ----------------- Test de la fonction Update ---------------------
 
-        String tableName = "TestTable";
+        String tableName1 = "TestTable";
         // Creation of the table
         Table testTableUpdate = new Table("tableName");
 
         // Creation of the query
         Update instanceUpdate = new Update();
-        instanceUpdate.from(tableName); // Add the tableName to the query
+        instanceUpdate.from(tableName1); // Add the tableName to the query
 
 
         instanceUpdate.update("col1","val1"); //Add couple of arguments to update
@@ -75,6 +116,38 @@ public class main {
 
         System.out.println(instanceInsert2.printQuery());
 
+        // SELECT COVER------------------------------------
+        Select selectInstance = new Select();
+        selectInstance.from("testSel");
+        selectInstance.select("test1");
+        selectInstance.selectDistinct("test2");
+        selectInstance.selectUnique("test3");
+        selectInstance.join("INNER","impossible","oui","oui","=");
+        selectInstance.groupBy("oui");
+        selectInstance.orderBy("oui","asc");
+        System.out.println(selectInstance.printQuery());
+
+        //Data base tests
+
+        Database databaseTest = new Database("fouki");
+        databaseTest.addTable(testTable);
+        String dataBaseTestName = databaseTest.getName();
+        List<Table> alltable = databaseTest.getListTables();
+
+        //SQL test
+
+        SQL.Make(SQL.SQLCOMMANDS.CREATE);
+        SQL.Make(SQL.SQLCOMMANDS.DROP);
+        SQL.Make(SQL.SQLCOMMANDS.INSERT);
+        SQL.Make(SQL.SQLCOMMANDS.DELETE);
+        SQL.Make(SQL.SQLCOMMANDS.UPDATE);
+        SQL.Make(SQL.SQLCOMMANDS.SELECT);
+
+
+        //run interface try all option to get all coverage
+
         InterfaceCLI client = new InterfaceCLI();
+
+
     }
 }

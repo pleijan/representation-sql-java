@@ -3,9 +3,11 @@ package mainTest.queries.Tables;
 
 import main.Table;
 import main.queries.Tables.Create;
+import main.queries.Tables.Delete;
 import main.queries.Tables.Drop;
 import mainTest.LifecycleLoggerTest;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -14,10 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * This is the class for testing the deletion of a table
  */
 
-class DropTest implements LifecycleLoggerTest {
+class DeleteTest implements LifecycleLoggerTest {
 
-    DropTest(){};
-
+    DeleteTest(){};
 
     @Test
     @DisplayName("from()- The table used in the query")
@@ -39,23 +40,25 @@ class DropTest implements LifecycleLoggerTest {
     @DisplayName("printQuery()- The final step of the Class")
     void printQuery() {
         String tableName = "TestTable";
-        String stringQuery = "DROP TABLE "+ tableName +";";
+        String stringQuery = "DELETE FROM "+ tableName;
         // Creation of the table
         Table testTable = new Table(tableName);
 
         // Creation of the query
-        Drop instance = new Drop();
-        instance.addName(tableName); // Add the tableName to the query
-        instance.addState(false);
-        assertEquals(stringQuery,instance.printQuery());
+        Delete instance = new Delete();
+        instance.from(tableName); // Add the tableName to the query
+        assertEquals(stringQuery+";",instance.printQuery());
+
+        // Create a condition
+        String colName = "testo";
+        String operator = " >= ";
+        String value = "NEWVALUE";
+        instance.where(colName,operator,value);
+
+        // Test one condition
+        stringQuery+= " WHERE "+colName+operator+value;
+        String ok = instance.printQuery();
+        assertEquals(stringQuery+";",instance.printQuery());
     }
 
-    @Test
-    void printQueryDatabase() {
-        Drop instance = new Drop();
-        instance.addName("DBName");
-        instance.addState(Boolean.TRUE);
-        String queryString="DROP DATABASE DBName;";
-        assertEquals(instance.printQuery(),queryString);
-    }
 }

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 class DatabaseTest {
 
+    DatabaseTest(){};
+
     @Test
     void database() {
 
