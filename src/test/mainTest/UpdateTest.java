@@ -3,7 +3,6 @@ package mainTest;
 import main.Table;
 import main.queries.Tables.Drop;
 import main.queries.Tables.Update;
-import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * This is the class to test adding a table to a new database
  */
 
-class DatabaseTest {
+class DatabaseTest implements LifecycleLoggerTest {
 
     DatabaseTest(){};
 

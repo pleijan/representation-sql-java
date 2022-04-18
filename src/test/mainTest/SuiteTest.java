@@ -17,12 +17,21 @@ public class SuiteTest {
         createTest.printQueryTable();
         createTest.printQueryDatabase();
 
+        /** Delete class */
+
+        DeleteTest deleteTest = new DeleteTest();
+
+        deleteTest.from();
+        deleteTest.printQuery();
+
         /** DropTest class */
 
         DropTest dropTest = new DropTest();
 
         dropTest.from();
         dropTest.printQuery();
+        dropTest.printQueryDatabase();
+        dropTest.getName();
 
         /** InsertTest class */
 
@@ -46,6 +55,7 @@ public class SuiteTest {
         selectTest.groupBy();
         selectTest.orderBy();
         selectTest.printQuery();
+        selectTest.getTableName();
 
         /** UpdateTest class */
 
@@ -71,11 +81,12 @@ public class SuiteTest {
         tableTest.testAddElement();
         tableTest.removeElement();
 
-        /** Delete class */
+        /** Column class */
 
-        DeleteTest deleteTest = new DeleteTest();
+        ColumnTest columnTest = new ColumnTest();
 
-        deleteTest.from();
-        deleteTest.printQuery();
+        columnTest.Column();
+        columnTest.setName();
+        columnTest.setDataType();
     }
 }

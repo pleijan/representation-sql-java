@@ -2,7 +2,6 @@ package mainTest;
 
 import main.Table;
 import main.queries.Tables.Insert;
-import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

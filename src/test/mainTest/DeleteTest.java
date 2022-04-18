@@ -2,10 +2,8 @@ package mainTest;
 
 
 import main.Table;
-import main.queries.Tables.Create;
 import main.queries.Tables.Delete;
 import main.queries.Tables.Drop;
-import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

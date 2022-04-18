@@ -1,7 +1,6 @@
 package mainTest;
 
 import main.queries.Tables.Create;
-import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

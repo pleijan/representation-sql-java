@@ -2,9 +2,7 @@ package mainTest;
 
 
 import main.Table;
-import main.queries.Tables.Create;
 import main.queries.Tables.Drop;
-import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

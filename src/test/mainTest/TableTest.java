@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * This is the class allowing to test the management of tables with the addition and removal of elements
  */
 
-class TableTest {
+class TableTest implements LifecycleLoggerTest {
 
     TableTest(){};
 

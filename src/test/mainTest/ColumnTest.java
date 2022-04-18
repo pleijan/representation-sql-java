@@ -5,7 +5,7 @@ import main.Column;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ColumnTest {
+public class ColumnTest implements LifecycleLoggerTest{
 
     @Test
     void Column(){
