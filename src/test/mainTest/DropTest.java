@@ -1,4 +1,4 @@
-package mainTest.queries.Tables;
+package mainTest;
 
 
 import main.Table;
@@ -57,5 +57,13 @@ class DropTest implements LifecycleLoggerTest {
         instance.addState(Boolean.TRUE);
         String queryString="DROP DATABASE DBName;";
         assertEquals(instance.printQuery(),queryString);
+    }
+
+    @Test
+    void getName() {
+        Drop instance = new Drop();
+        String name = "DBName";
+        instance.addName(name);
+        assertEquals(instance.getName(),name);
     }
 }

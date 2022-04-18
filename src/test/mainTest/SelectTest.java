@@ -1,4 +1,4 @@
-package mainTest.queries.Tables;
+package mainTest;
 
 import main.Table;
 import main.queries.Tables.*;
@@ -211,6 +211,11 @@ class SelectTest implements LifecycleLoggerTest {
 
         String expected = table.get(att)+" DESC";
         assertEquals(expected, instance.getOrderBys().get(0));
+
+        instance.orderBy(table.get(att),"ASC");
+
+        expected = table.get(att)+" ASC";
+        assertEquals(expected, instance.getOrderBys().get(1));
     }
 
     @Test
@@ -287,5 +292,14 @@ class SelectTest implements LifecycleLoggerTest {
         instance.orderBy(table.get(att1),"");
         instance.orderBy(table2.get(att21),"");
         assertEquals(expected+";",instance.printQuery());
+    }
+
+    @Test
+    void getTableName() {
+        String tableName = "TestTable";
+        Table table = new Table(tableName);
+        Select instance = new Select();
+        instance.from(tableName);
+        assertEquals("["+ tableName + "]", instance.getTableName());
     }
 }

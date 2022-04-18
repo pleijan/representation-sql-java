@@ -1,4 +1,4 @@
-package mainTest.queries.Tables;
+package mainTest;
 
 import main.queries.Tables.Create;
 import mainTest.LifecycleLoggerTest;
@@ -41,7 +41,6 @@ public class CreateTest implements LifecycleLoggerTest {
         instance.addState(Boolean.FALSE);
         instance.addColumn("ok","bit",true);
         String queryString="CREATE TABLE TableName (\nok bit NULL ;";
-        String test = instance.printQuery();
         assertEquals(instance.printQuery(),queryString);
     }
 

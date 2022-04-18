@@ -1,27 +1,24 @@
-package mainTest.queries.Tables;
-
+package mainTest;
 
 import main.Table;
-import main.queries.Tables.Create;
-import main.queries.Tables.Delete;
 import main.queries.Tables.Drop;
+import main.queries.Tables.Update;
 import mainTest.LifecycleLoggerTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
- * This is the class for testing the deletion of a table
+ * This is the class to test the update of a table
  */
 
-class DeleteTest implements LifecycleLoggerTest {
+class UpdateTest implements LifecycleLoggerTest{
 
-    DeleteTest(){};
+    UpdateTest(){};
 
     @Test
-    @DisplayName("from()- The table used in the query")
+    @DisplayName("from()")
     void from() {
         String tableName = "TestTable";
         // Creation of the table
@@ -31,22 +28,44 @@ class DeleteTest implements LifecycleLoggerTest {
         Drop instance = new Drop();
         instance.from(tableName); // Add the tableName to the query
 
-
         assertEquals(testTable.getName(),instance.getTableName());
         assertNotEquals("",instance.getTableName());
     }
 
     @Test
-    @DisplayName("printQuery()- The final step of the Class")
-    void printQuery() {
+    @DisplayName("update()")
+    void update() {
         String tableName = "TestTable";
-        String stringQuery = "DELETE FROM "+ tableName;
         // Creation of the table
         Table testTable = new Table(tableName);
 
         // Creation of the query
-        Delete instance = new Delete();
+        Update instance = new Update();
         instance.from(tableName); // Add the tableName to the query
+
+
+        instance.update("col1","val1"); //Add couple of arguments to update
+
+        assertEquals(instance.getNewValue().size(),1);
+        assertEquals(instance.getAttributes().size(),1);
+    }
+
+
+    @Test
+    @DisplayName("queryString()-")
+    void printQuery() {
+        String tableName = "TestTable";
+        String stringQuery = "UPDATE "+tableName+" SET col1 = val1";
+        // Creation of the table
+        Table testTable = new Table(tableName);
+
+        // Creation of the query
+        Update instance = new Update();
+        instance.from(tableName); // Add the tableName to the query
+
+
+        instance.update("col1","val1"); //Add couple of arguments to update
+
         assertEquals(stringQuery+";",instance.printQuery());
 
         // Create a condition
@@ -60,5 +79,4 @@ class DeleteTest implements LifecycleLoggerTest {
         String ok = instance.printQuery();
         assertEquals(stringQuery+";",instance.printQuery());
     }
-
 }

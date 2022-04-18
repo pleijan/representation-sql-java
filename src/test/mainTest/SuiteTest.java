@@ -1,4 +1,4 @@
-package mainTest.queries.Tables;
+package mainTest;
 
 /**
  * This class executes all test methods

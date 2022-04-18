@@ -1,4 +1,4 @@
-package mainTest.queries.Tables;
+package mainTest;
 
 import main.Table;
 import org.junit.jupiter.api.Test;
